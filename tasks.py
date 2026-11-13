@@ -40,6 +40,11 @@ print(compute_output_size_1d(input_array, kernel_array))
 def convolve_1d(input_array, kernel_array):
     # Tip: start by initializing an empty output array (you can use your function above to calculate the correct size).
     # Then fill the cells in the array with a loop.
+    output_length = compute_output_size_1d(input_array, kernel_array)
+    output_array = np.zeros(output_length)
+    for i in range(output_length):
+        output_array[i] = np.sum(input_array[i:i + len(kernel_array)] * kernel_array)
+    return output_array
 
 # -----------------------------------------------
 # Another tip: write test cases like this, so you can easily test your function.
