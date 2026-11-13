@@ -91,7 +91,20 @@ print(compute_output_size_2d(input_matrix, kernel_matrix))
 def convolute_2d(input_matrix, kernel_matrix):
     # Tip: same tips as above, but you might need a nested loop here in order to
     # define which parts of the input matrix need to be multiplied with the kernel matrix.
-    pass
+    output_height, output_width = compute_output_size_2d(input_matrix, kernel_matrix)
+    output_matrix = np.zeros((output_height, output_width))
+    for i in range(output_height):
+        for j in range(output_width):
+            output_matrix[i, j] = np.sum(input_matrix[i:i + kernel_matrix.shape[0], j:j + kernel_matrix.shape[1]] * kernel_matrix)
+    return output_matrix
 
+
+# test
+input_matrix = np.array([[2, 2, 3],
+                         [4, 5, 6],
+                         [7, 8, 10]])
+kernel_matrix = np.array([[1, 0],
+                          [0, -1]])
+print(convolute_2d(input_matrix, kernel_matrix))
 
 # -----------------------------------------------
